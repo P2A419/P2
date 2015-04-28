@@ -1,2 +1,0 @@
-D:\Development\P2Produkt\P2\bin\Debug\P2.exe.config
-D:\Development\P2Produkt\bin\Debug\P2.exe.config
