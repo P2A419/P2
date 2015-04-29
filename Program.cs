@@ -10,6 +10,11 @@ namespace P2
     {
         static void Main(string[] args)
         {
+           
+        }
+        static void HelloWorld()
+        {
+            //Rasmus ligner en bøsse
             Console.WriteLine("Hello World");
         }
     }
