@@ -10,7 +10,7 @@ namespace P2
     {
         static void Main(string[] args)
         {
-           
+            HelloWorld();
         }
         static void HelloWorld()
         {
