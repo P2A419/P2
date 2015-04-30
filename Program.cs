@@ -10,12 +10,7 @@ namespace P2
     {
         static void Main(string[] args)
         {
-            HelloWorld();
-        }
-        static void HelloWorld()
-        {
-            //Rasmus ligner en bøsse
-            Console.WriteLine("Hello World");
+            Wizard.wizard_start();
         }
     }
 }
