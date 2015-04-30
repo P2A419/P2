@@ -112,7 +112,7 @@ namespace P2
             {
                 i++;
                 string[] nums = line.Split(' ');
-                listTestData.Add(new TestData(i, Convert.ToInt32(nums[0]), Convert.ToInt32(nums[1])));
+                listTestData.Add(new TestData(i, Convert.ToDouble(nums[0]), Convert.ToDouble(nums[1])));
             }
             file.Close();
 

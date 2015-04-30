@@ -9,11 +9,11 @@ namespace P2
     class TestData
     {
         private int number;
-        private int distance;
-        private int degree;
+        private double distance;
+        private double degree;
         public bool normal=false;
 
-        public TestData(int number, int distance, int degree)
+        public TestData(int number, double distance, double degree)
         {
             this.number = number;
             this.distance = distance;
