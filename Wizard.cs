@@ -15,14 +15,14 @@ namespace P2
                               "Her skal du blandt andet også vise hvor dit test data er\r\n"+
                               "Tryk på en vilkårlig knap for at forsætte");
             Console.ReadKey();
-            data_location(file_name());
+            readfromfile(data_location(file_name()));
         }
         public static string file_name()
         {
             Console.Clear();
             Console.WriteLine("Hvad hedder filen med dine test\r\n"+
                               "Et eksempel kan være 'test.txt'");
-            string filename=Console.ReadLine();
+            string filename=@"\"+Console.ReadLine();
             if (filename.EndsWith(".txt") == false)
             {
                 return filename+".txt";
@@ -54,7 +54,7 @@ namespace P2
             path = drev + @":\Users\" + user + @"\" + folder;
             Console.WriteLine("Er dette den rigtige vej til filen {0}",path);
             temp = Console.ReadKey();
-            if (temp.Key != ConsoleKey.J || temp.Key != ConsoleKey.Y)
+            if (temp.Key == ConsoleKey.N)
             {
                 Console.Clear();
                 manual_file();
@@ -66,18 +66,19 @@ namespace P2
         {
             if (temp == "1")
             {
+                Console.WriteLine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +  filename);
                 return  Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + filename;
             }
             else if (temp == "2")
             {
-                return  Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + filename;
+                return Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + filename;
             }
             else
             {
-                return  manual_file();
+                return  manual_file() + @"\" + filename;;
             }
         }
-        public static void data_location(string filename)
+        public static string data_location(string filename)
         {
             string temp,path;
             Console.Clear();
@@ -86,16 +87,36 @@ namespace P2
             "Eller vil du intaste stigen manuelt(vilkårlig knap)?");
             temp = Console.ReadLine();
             path = file_location(temp,filename);
-            if (File.Exists(temp))
+            if (File.Exists(path))
             {
                 Console.WriteLine("Vi fandt filen og går nu videre i wizarden");
             }
             else
             {
-                Console.WriteLine("Vi fandt ikke filen og går nu tilbage for at finde den\r\n");
+                Console.WriteLine("Vi fandt ikke filen og går nu tilbage for at finde den\r\n"+
+                    "Tryk på en hvilkårlig knap for at forsætte");
+                Console.ReadKey();
                 data_location(file_name());
-
             }
+
+            return path;
+        }
+        static List<TestData> readfromfile(string path)
+        {
+            string line;
+            int i = 0;
+            List<TestData> listTestData = new List<TestData>();
+
+            System.IO.StreamReader file = new System.IO.StreamReader(path);
+            while ((line = file.ReadLine()) != null)
+            {
+                i++;
+                string[] nums = line.Split(' ');
+                listTestData.Add(new TestData(i, Convert.ToInt32(nums[0]), Convert.ToInt32(nums[1])));
+            }
+            file.Close();
+
+            return listTestData;
         }
     }
 }
