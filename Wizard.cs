@@ -104,18 +104,22 @@ namespace P2
         static List<TestData> readfromfile(string path)
         {
             string line;
-            int i = 0;
+            int i = 1;
             List<TestData> listTestData = new List<TestData>();
 
             System.IO.StreamReader file = new System.IO.StreamReader(path);
             while ((line = file.ReadLine()) != null)
             {
+                string[] nums = line.Split(' ','.');
+                listTestData.Add(new TestData(i, Convert.ToDouble(nums[0]+","+nums[1]), Convert.ToDouble(nums[2]+","+nums[3])));
                 i++;
-                string[] nums = line.Split(' ');
-                listTestData.Add(new TestData(i, Convert.ToDouble(nums[0]), Convert.ToDouble(nums[1])));
             }
             file.Close();
 
+            foreach (TestData t in listTestData)
+            {
+                t.printall();
+            }
             return listTestData;
         }
     }
