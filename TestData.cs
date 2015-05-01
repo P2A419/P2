@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace P2
 {
-    class TestData
+    public class TestData
     {
-        private int number;
-        private double distance;
-        private double degree;
-        public bool normal=false;
+        int number;
+        double distance;
+        double degree;
+        bool normal=false;
 
         public TestData(int number, double distance, double degree)
         {
@@ -23,7 +23,8 @@ namespace P2
         {
             this.normal = normal;
         }
-        public void printall(){
+        public void printall()
+        {
             Console.WriteLine("linje {0} : {1} - {2}", this.number, this.distance, this.degree);
         }
     }

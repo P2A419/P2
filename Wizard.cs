@@ -66,7 +66,6 @@ namespace P2
         {
             if (temp == "1")
             {
-                Console.WriteLine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +  filename);
                 return  Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + filename;
             }
             else if (temp == "2")
@@ -87,6 +86,7 @@ namespace P2
             "Eller vil du intaste stigen manuelt(vilkårlig knap)?");
             temp = Console.ReadLine();
             path = file_location(temp,filename);
+            Console.Clear();
             if (File.Exists(path))
             {
                 Console.WriteLine("Vi fandt filen og går nu videre i wizarden");
@@ -116,10 +116,6 @@ namespace P2
             }
             file.Close();
 
-            foreach (TestData t in listTestData)
-            {
-                t.printall();
-            }
             return listTestData;
         }
     }
