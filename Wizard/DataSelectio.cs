@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 namespace P2
 {
-    class Wizard
+    class DataSelection
     {
         public static void wizard_start()
         {
