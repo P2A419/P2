@@ -15,7 +15,11 @@ namespace P2
                               "Her skal du blandt andet også vise hvor dit test data er\r\n"+
                               "Tryk på en vilkårlig knap for at forsætte");
             Console.ReadKey();
-            readfromfile(data_location(file_name()));
+            List<TestData> liste= readfromfile(data_location(file_name()));
+            foreach (TestData t in liste)
+            {
+                t.printall();
+            }
         }
         public static string file_name()
         {
