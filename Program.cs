@@ -10,7 +10,7 @@ namespace P2
     {
         static void Main(string[] args)
         {
-            DataSelection.wizard_start();
+            Wizard.Wizard.wizard();
         }
     }
 }

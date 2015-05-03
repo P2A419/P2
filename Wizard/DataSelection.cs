@@ -8,16 +8,6 @@ namespace P2
 {
     class DataSelection
     {
-        public static void wizard_start()
-        {
-            Console.WriteLine("Velkommen til vored wizard\r\n"+
-                              "Her kan du defniere diverse data til algoritmen\r\n"+
-                              "Her skal du blandt andet også vise hvor dit test data er\r\n"+
-                              "Tryk på en vilkårlig knap for at forsætte");
-            Console.ReadKey();
-            List<TestData> listdata= readfromfile(data_location(file_name()));
-            //print_list(listdata);
-        }
         public static string file_name()
         {
             Console.Clear();
@@ -102,7 +92,7 @@ namespace P2
 
             return path;
         }
-        static List<TestData> readfromfile(string path)
+        public static List<TestData> readfromfile(string path)
         {
             string line;
             int i = 1;
