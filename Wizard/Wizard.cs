@@ -16,7 +16,7 @@ namespace P2.Wizard
                               "Tryk på en vilkårlig knap for at forsætte");
             Console.ReadKey();
             List<TestData> listdata = DataSelection.readfromfile(DataSelection.data_location(DataSelection.file_name()));
-            //print_list(listdata);
+            DataSelection.print_list(listdata);
         }
     }
 }

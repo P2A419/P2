@@ -109,15 +109,15 @@ namespace P2
 
             return listTestData;
         }
-        //public static void print_list(List<TestData> listdata)
-        //{
-        //               foreach (TestData t in listdata)
-        //    {
-        //        if (t.number < 10)
-        //        {
-        //            t.printall();
-        //        }
-        //    }
-        //}
+        public static void print_list(List<TestData> listdata)
+        {
+            foreach (TestData t in listdata)
+            {
+                if (t.number < 199)
+                {
+                    t.printall();
+                }
+            }
+        }
     }
 }
