@@ -8,10 +8,10 @@ namespace P2
 {
     public class TestData
     {
-        int number;
-        double distance;
-        double degree;
-        bool normal=false;
+        public int number;
+        public double distance { private set; get; }
+        public double degree { private set; get; }
+        public bool normal=false;
 
         public TestData(int number, double distance, double degree)
         {

@@ -15,11 +15,8 @@ namespace P2
                               "Her skal du blandt andet også vise hvor dit test data er\r\n"+
                               "Tryk på en vilkårlig knap for at forsætte");
             Console.ReadKey();
-            List<TestData> liste= readfromfile(data_location(file_name()));
-            foreach (TestData t in liste)
-            {
-                t.printall();
-            }
+            List<TestData> listdata= readfromfile(data_location(file_name()));
+            //print_list(listdata);
         }
         public static string file_name()
         {
@@ -122,5 +119,15 @@ namespace P2
 
             return listTestData;
         }
+        //public static void print_list(List<TestData> listdata)
+        //{
+        //               foreach (TestData t in listdata)
+        //    {
+        //        if (t.number < 10)
+        //        {
+        //            t.printall();
+        //        }
+        //    }
+        //}
     }
 }
