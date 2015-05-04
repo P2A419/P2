@@ -10,13 +10,18 @@ namespace P2.Wizard
     {
         public static void wizard()
         {
-            Console.WriteLine("Velkommen til vored wizard\r\n" +
-                              "Her kan du defniere diverse data til algoritmen\r\n" +
-                              "Her skal du blandt andet også vise hvor dit test data er\r\n" +
-                              "Tryk på en vilkårlig knap for at forsætte");
-            Console.ReadKey();
+            wizard_start();
             List<TestData> listdata = DataSelection.readfromfile(DataSelection.data_location(DataSelection.file_name()));
-            DataSelection.print_list(listdata);
+            //DataSelection.print_list(listdata);
+            Algorithm.Algorithm.algorithm_selection(listdata);
+        }
+        public static void wizard_start()
+        {
+            Console.WriteLine("Velkommen til vored wizard\r\n" +
+                  "Her kan du defniere diverse data til algoritmen\r\n" +
+                  "Her skal du blandt andet også vise hvor dit test data er\r\n" +
+                  "Tryk på en vilkårlig knap for at forsætte");
+            Console.ReadKey();
         }
     }
 }

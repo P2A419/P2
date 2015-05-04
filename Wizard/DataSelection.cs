@@ -80,17 +80,18 @@ namespace P2
             Console.Clear();
             if (File.Exists(path))
             {
-                Console.WriteLine("Vi fandt filen og går nu videre i wizarden");
+                Console.WriteLine("Vi fandt filen, tryk på en vilkårlig tast for at forsætte");
+                Console.ReadKey();
+                Console.Clear();
+                return(path);
             }
             else
             {
                 Console.WriteLine("Vi fandt ikke filen og går nu tilbage for at finde den\r\n"+
                     "Tryk på en hvilkårlig knap for at forsætte");
                 Console.ReadKey();
-                data_location(file_name());
+                return data_location(file_name());
             }
-
-            return path;
         }
         public static List<TestData> readfromfile(string path)
         {
@@ -109,15 +110,15 @@ namespace P2
 
             return listTestData;
         }
-        public static void print_list(List<TestData> listdata)
-        {
-            foreach (TestData t in listdata)
-            {
-                if (t.number < 199)
-                {
-                    t.printall();
-                }
-            }
-        }
+        //public static void print_list(List<TestData> listdata)
+        //{
+        //    foreach (TestData t in listdata)
+        //    {
+        //        if (t.number < 199)
+        //        {
+        //            t.printall();
+        //        }
+        //    }
+        //}
     }
 }
