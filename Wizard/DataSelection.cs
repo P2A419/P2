@@ -65,7 +65,7 @@ namespace P2
             }
             else
             {
-                return  manual_file() + @"\" + filename;;
+                return  manual_file() + @"\" + filename;
             }
         }
         public static string data_location(string filename)
@@ -114,7 +114,7 @@ namespace P2
         //{
         //    foreach (TestData t in listdata)
         //    {
-        //        if (t.number < 199)
+        //        if (t.number < 100000)
         //        {
         //            t.printall();
         //        }
