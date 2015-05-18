@@ -18,8 +18,8 @@ namespace P2.Wizard
         public static void wizard_start()
         {
             Console.WriteLine("Velkommen til vored wizard\r\n" +
-                  "Her kan du defniere diverse data til algoritmen\r\n" +
-                  "Her skal du blandt andet også vise hvor dit test data er\r\n" +
+                  "Her kan du definere diverse data til algoritmen\r\n" +
+                  "Her skal du blandt andet også vise hvor dine test data er\r\n" +
                   "Tryk på en vilkårlig knap for at forsætte");
             Console.ReadKey();
         }
