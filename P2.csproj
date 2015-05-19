@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9C950061-541B-426D-8E2F-ED0AFF172C4D}</ProjectGuid>
+    <ProjectGuid>{8E9526B5-A6D2-43D5-949D-F60D0E940562}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>P2</RootNamespace>
@@ -43,13 +43,6 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Wizard\Algorithm.cs" />
-    <Compile Include="Wizard\Algorithm\Density.cs" />
-    <Compile Include="Wizard\Algorithm\Distance.cs" />
-    <Compile Include="Wizard\Algorithm\Gaussian.cs" />
-    <Compile Include="Wizard\TestData.cs" />
-    <Compile Include="Wizard\DataSelection.cs" />
-    <Compile Include="Wizard\Wizard.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

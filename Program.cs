@@ -10,7 +10,6 @@ namespace P2
     {
         static void Main(string[] args)
         {
-            Wizard.Wizard.wizard();
         }
     }
 }
