@@ -27,7 +27,7 @@ namespace P2
             else
             {
                 Console.WriteLine("-- Wizard --");
-                Console.WriteLine("Write the file path followed by the algorhithm (gaussian, density, distance) - type \"q\" to quit");
+                Console.WriteLine("Write the file path followed by the algorhithm (gaussian, density, distance)");
                 string[] arguments = Console.ReadLine().Split(' ');
 
                 try

@@ -38,7 +38,7 @@ namespace P2.Wizards.Algorithms
                 covariance[1, 0] += (1.0 / items.Count) * (xo[1] * xo[0]);
                 covariance[1, 1] += (1.0 / items.Count) * (xo[1] * xo[1]);
             }
-            Console.WriteLine("Test data loaded");
+            Console.WriteLine("Test data loaded - Enter test values below. type \"q\" to quit");
         }
         public static void IsAnomality(Gris g)
         {
@@ -58,7 +58,7 @@ namespace P2.Wizards.Algorithms
             double res = newVector[0] * v[0] + newVector[1] * v[1];
 
             double px = (1.0 / (Math.Pow((2.0 * Math.PI), Gris.NumParams / 2.0) * Math.Sqrt(dx.Determinant))) * Math.Exp(-0.5 * res);
-            Console.WriteLine(0 == px);
+            Console.WriteLine(px);
         }
 
         // Helper functions - Courtesy of Dr. Gains

@@ -30,6 +30,7 @@ namespace P2.Wizards
                     if (Algorithm.ToLower() == "gaussian")
                     {
                         //Console.WriteLine(Items.Count);
+
                         Gaussian.Run(ref Items, Gris.NumParams);
                         while (true) CommandParser(Console.ReadLine(), "gaussian");
                         //Console.WriteLine(Items.Count);
