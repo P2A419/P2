@@ -9,7 +9,7 @@ namespace P2.Wizards
 {
     public class Wizard
     {
-        public static List<Gris> Items = new List<Gris>();
+        public static List<Unit> Items = new List<Unit>();
 
         public static void Start(string Filepath, string Algorithm)
         {
@@ -21,14 +21,14 @@ namespace P2.Wizards
                     for (var i = 1; i <= lines.Length; i++)
                     {
                         var components = lines[i - 1].Split(' ');
-                        Gris g = new Gris(double.Parse(components[0], CultureInfo.InvariantCulture), double.Parse(components[1], CultureInfo.InvariantCulture));
+                        Unit g = new Unit(double.Parse(components[0], CultureInfo.InvariantCulture), double.Parse(components[1], CultureInfo.InvariantCulture));
                         Items.Add(g);
                     }
                     if (Algorithm.ToLower() == "gaussian")
                     {
                         //Console.WriteLine(Items.Count);
 
-                        Gaussian.Run(ref Items, Gris.NumParams);
+                        Gaussian.Run(ref Items, Unit.NumParams);
                         while (true) CommandParser(Console.ReadLine(), "gaussian");
                         //Console.WriteLine(Items.Count);
                     }
@@ -47,7 +47,7 @@ namespace P2.Wizards
                 try
                 {
                     string[] components = command.Split(' ');
-                    Gris g = new Gris(double.Parse(components[0]), double.Parse(components[1]));
+                    Unit g = new Unit(double.Parse(components[0]), double.Parse(components[1]));
                     Gaussian.IsAnomality(g);
                 }
                 catch
