@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 
-namespace P2.Wizards.Algorithms
+namespace P2.Algorithms
 {
     public class Gaussian
     {
@@ -39,6 +39,7 @@ namespace P2.Wizards.Algorithms
                 covariance[1, 1] += (1.0 / items.Count) * (xo[1] * xo[1]);
             }
             Console.WriteLine("Test data loaded - Enter test values below. type \"q\" to quit");
+            //Console.WriteLine(mean[0] + "x" + mean[1]);
         }
         public static void IsAnomality(Gris g)
         {
@@ -47,7 +48,6 @@ namespace P2.Wizards.Algorithms
             dx.M12 = covariance[0, 1];
             dx.M21 = covariance[1, 0];
             dx.M22 = covariance[1, 1];
-
 
             double[] v = new double[Gris.NumParams];
             v[0] = g.Distance - mean[0];

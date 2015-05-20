@@ -6,7 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using P2.Wizards.Algorithms;
+using P2.Algorithms;
 
 namespace P2.Wizards
 {

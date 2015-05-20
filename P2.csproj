@@ -46,7 +46,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Types\Gris.cs" />
     <Compile Include="Types\Type.cs" />
-    <Compile Include="Wizard\Algorithms\Gaussian.cs" />
+    <Compile Include="Algorithms\Gaussian.cs" />
     <Compile Include="Wizard\Wizard.cs" />
   </ItemGroup>
   <ItemGroup>
