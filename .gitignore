@@ -1,3 +1,4 @@
-P2/P2.csproj.user
+*.suo
+*.user
 P2/bin/
 P2/obj/
