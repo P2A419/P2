@@ -2,13 +2,13 @@
 
 namespace P2.Types
 {
-    public class Gris : Type
+    public class Unit : Type
     {
         public static int NumParams = 2;
         public double Distance { get; set; }
         public double Angle { get; set; }
 
-        public Gris(double Distance, double Angle)
+        public Unit(double Distance, double Angle)
         {
             //this.Number = Number;
             this.Distance = Distance;
