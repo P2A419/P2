@@ -8,6 +8,10 @@ namespace P2
     {
         static void Main(string[] args)
         {
+            Parser(args);
+        }
+        static void Parser(string[] args)
+        {
             if (args.Length == 2)
             {
                 try
@@ -29,12 +33,14 @@ namespace P2
                 {
                     //Wizard.Start(arguments[0], arguments[1]);
                     Wizard.Start(@"D:/Dropbox/P2/Projekt/simdata/simdata.txt", "gaussian");
-                } catch (FileNotFoundException)
+                }
+                catch (FileNotFoundException)
                 {
                     Console.Clear();
                     Console.WriteLine("Invalid file path");
                     Main(new string[0]);
-                } catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     Console.WriteLine(ex);
                     Console.WriteLine("Invalid command");
