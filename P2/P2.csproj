@@ -44,6 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithms\Gaussian.cs" />
+    <Compile Include="Math\Core.cs" />
+    <Compile Include="Math\Vector.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Types\Gris.cs" />

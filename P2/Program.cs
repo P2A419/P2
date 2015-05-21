@@ -1,6 +1,12 @@
-﻿using P2.Wizards;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.IO;
+using System.Windows.Media;
+using P2.Wizards;
+using P2.CustomMath;
 
 namespace P2
 {
@@ -8,10 +14,12 @@ namespace P2
     {
         static void Main(string[] args)
         {
-            Parser(args);
-        }
-        static void Parser(string[] args)
-        {
+            /*Vector b = new Vector(1,2);
+            Console.WriteLine(b + b);
+            Console.WriteLine(20 * b);
+            Console.ReadLine();
+
+            return;*/
             if (args.Length == 2)
             {
                 try
@@ -31,8 +39,8 @@ namespace P2
 
                 try
                 {
-                    //Wizard.Start(arguments[0], arguments[1]);
-                    Wizard.Start(@"D:/Dropbox/P2/Projekt/simdata/simdata.txt", "gaussian");
+                    //Wizard.Start(@"D:/Dropbox/P2/Projekt/simdata/simdata.txt", "gaussian");
+                    Wizard.Start(arguments[0], arguments[1]);
                 }
                 catch (FileNotFoundException)
                 {
