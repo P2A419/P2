@@ -14,13 +14,7 @@ namespace P2
     {
         static void Main(string[] args)
         {
-            /*Vector b = new Vector(1,2);
-            Console.WriteLine(b + b);
-            Console.WriteLine(20 * b);
-            Console.ReadLine();
-
-            return;*/
-            if (args.Length == 2)
+            if (args != null && args.Length == 2)
             {
                 try
                 {
@@ -28,7 +22,13 @@ namespace P2
                 }
                 catch (FileNotFoundException)
                 {
-
+                    Console.WriteLine("Invalid file path");
+                    Environment.Exit(0);
+                }
+                catch
+                {
+                    Console.WriteLine("Invalid command");
+                    Environment.Exit(0);
                 }
             }
             else
@@ -46,13 +46,13 @@ namespace P2
                 {
                     Console.Clear();
                     Console.WriteLine("Invalid file path");
-                    Main(new string[0]);
+                    Main(null);
                 }
-                catch (Exception ex)
+                catch
                 {
-                    Console.WriteLine(ex);
+                    Console.Clear();
                     Console.WriteLine("Invalid command");
-                    Main(new string[0]);
+                    Main(null);
                 }
             }
             Console.ReadLine();

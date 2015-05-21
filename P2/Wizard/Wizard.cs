@@ -32,6 +32,11 @@ namespace P2.Wizards
                         Gaussian.Run(ref Items);
                         while (true) CommandParser(Console.ReadLine(), "gaussian");
                     }
+                    else
+                    {
+                        Console.WriteLine("Algorithm not supported yet. Please select another.");
+                        Start(Filepath, Console.ReadLine());
+                    }
                 }
                 else throw new Exception();
             }

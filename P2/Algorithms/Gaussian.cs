@@ -41,8 +41,8 @@ namespace P2.Algorithms
             }
             catch
             {
-                Epsilon = 1E-10;
-                Console.WriteLine("Value could not be parsed. Defaulting to an epsilon value of 1E-10. Enter the full filepath of the test file to check or anomalities");
+                Epsilon = 5E-4;
+                Console.WriteLine("Value could not be parsed. Defaulting to an epsilon value of 0.0005. Enter the full filepath of the test file to check or anomalities");
             }
         }
         public static bool IsAnomality(Gris g)
