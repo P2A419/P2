@@ -39,7 +39,6 @@ namespace P2
 
                 try
                 {
-                    //Wizard.Start(@"D:/Dropbox/P2/Projekt/simdata/simdata.txt", "gaussian");
                     Wizard.Start(arguments[0], arguments[1]);
                 }
                 catch (FileNotFoundException)

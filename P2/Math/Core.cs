@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using P2.CustomMath;
 using System.Windows.Media;
+using P2.CustomMath;
 
 namespace P2.CustomMath
 {
