@@ -24,14 +24,14 @@ namespace P2.Algorithms
             // Calculate mean vector
             for (int i = 0; i < items.Count; i++)
             {
-                Vector gris = new Vector(items[i].Distance, items[i].Angle);
-                Mean += (1.0 / items.Count) * gris;
+                Vector item = new Vector(items[i].Distance, items[i].Angle);
+                Mean += (1.0 / items.Count) * item;
             }
             // Calculate covariance matrix
             for (int i = 0; i < items.Count; i++)
             {
-                Vector grisDeviation = new Vector(new Vector(items[i].Distance, items[i].Angle) - Mean);
-                Covariance = Core.MatrixAddition(Covariance, Core.ConstantVectorProduct((1.0 / items.Count), (grisDeviation * grisDeviation)));
+                Vector itemDeviation = new Vector(new Vector(items[i].Distance, items[i].Angle) - Mean);
+                Covariance = Core.MatrixAddition(Covariance, Core.ConstantVectorProduct((1.0 / items.Count), (itemDeviation * itemDeviation)));
             }
             Console.WriteLine("Training algorithm created. Enter a value for epsilon.");
             try
