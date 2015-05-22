@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace P2.Types
 {
-    public class Type
+    class Type
     {
-        public int Number { get; protected set; }
+        public static int Increment = 0;
         public bool Anomality = false;
     }
 }
