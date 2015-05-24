@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P2.Types
+namespace P2.AnomalyDetection
 {
-    class Type
+    class Parametric : Algorithms
     {
-        public static int Increment = 0;
-        public bool Anomality = false;
+        
     }
 }
