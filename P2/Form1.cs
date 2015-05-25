@@ -55,11 +55,11 @@ namespace P2
             try
             {
                 UnitCollection units = new UnitCollection();
-
+                
                 units.FromFile(GaussianTrainingFileTextBox.Text);
-
+                
                 UnitCollection standardized = new UnitCollection();
-
+                
                 standardized = gaussian.Standardize(units);
 
                 gaussian.Train(standardized);
@@ -83,11 +83,15 @@ namespace P2
         {
             try
             {
+                AnomaliesDetectedListView.Items.Clear();
                 AnomaliesDetectedListView.Columns.Clear();
 
                 UnitCollection units = new UnitCollection();
+                
                 units.FromFile(DataFileTextBox.Text);
+                
                 UnitCollection standardized = new UnitCollection();
+                
                 standardized = gaussian.Standardize(units);
 
                 ColumnHeader hID = new ColumnHeader();

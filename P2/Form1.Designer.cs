@@ -213,7 +213,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(240, 111);
             this.label6.TabIndex = 0;
-            this.label6.Text = "label6";
+            this.label6.Text = "Not implemented";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tabPage3
@@ -235,7 +235,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(246, 117);
             this.label7.TabIndex = 0;
-            this.label7.Text = "label7";
+            this.label7.Text = "Not implemented";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // StartDetectionButton
