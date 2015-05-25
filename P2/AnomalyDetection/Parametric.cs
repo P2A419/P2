@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace P2.AnomalyDetection
 {
-    class Parametric : Algorithms
+    class Parametric : Algorithm
     {
-        
     }
 }

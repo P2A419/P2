@@ -1,5 +1,4 @@
 ﻿using MathNet.Numerics.LinearAlgebra;
-using P2.Units;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -11,36 +10,47 @@ namespace P2.AnomalyDetection
 {
     class Gaussian : Parametric
     {
-        static Vector<double> Mean;
-        static Matrix<double> covariance;
+        public Vector<double> Mean;
+        public Matrix<double> Covariance;
 
-        public void Train<T>(ref List<T> units)
+        public void Train(UnitCollection units)
         {
-            units = Standardize(ref units);
-            Mean = CalculateMean(ref units);
-            covariance = CalculateCovariance(ref units);
+            Mean = CalculateMean(units);
+            Covariance = CalculateCovariance(units);
         }
 
-        Matrix<double> CalculateCovariance<T>(ref List<T> units)
+        Matrix<double> CalculateCovariance(UnitCollection units)
         {
-            int propCount = typeof(T).GetProperties().Count();
-            Matrix<double> covariance = Matrix<double>.Build.Dense(propCount, propCount);
+            Matrix<double> covariance = Matrix<double>.Build.Dense(units.NumberOfValues(), units.NumberOfValues());
 
-            foreach (T unit in units)
+            foreach (Unit unit in units.List)
             {
-                Vector<double> v = UnitToVector(unit) - Mean;
+                Vector<double> v = unit.ToVector() - Mean;
 
-                covariance += (1.0 / units.Count) * (v.ToColumnMatrix() * v.ToRowMatrix());
+                covariance += v.ToColumnMatrix() * v.ToRowMatrix();
             }
+
+            covariance *= 1.0 / units.List.Count();
 
             return covariance;
         }
 
-        public double CalculatePlim<T>(ref List<T> units)
+        double CalculateProbability(Unit unit)
+        {
+            Vector<double> v = unit.ToVector() - Mean;
+
+            double normalizationConstant = 1.0 / (Math.Pow(2 * Math.PI, unit.NumberOfValues() / 2.0) * Math.Sqrt(Covariance.Determinant()));
+
+            double exp = -0.5 * (v.ToRowMatrix() * Covariance.Inverse() * v.ToColumnMatrix()).At(0, 0);
+
+            return normalizationConstant * Math.Exp(exp);
+        }
+
+        public double CalculateProbabilityLimit(UnitCollection units)
         {
             double min = 1;
 
-            foreach (T unit in units)
+            foreach (Unit unit in units.List)
             {
                 double px = CalculateProbability(unit);
 
@@ -48,25 +58,12 @@ namespace P2.AnomalyDetection
                 {
                     min = px;
                 }
-
             }
 
             return min;
         }
 
-        double CalculateProbability<T>(T unit)
-        {
-            int propCount = typeof(T).GetProperties().Count();
-
-            Vector<double> v = UnitToVector(unit) - Mean;
-
-            double normalizationConstant = 1.0 / (Math.Pow(2 * Math.PI, propCount / 2.0) * Math.Sqrt(covariance.Determinant()));
-            double exp = -0.5 * (v.ToRowMatrix() * covariance.Inverse() * v.ToColumnMatrix()).At(0, 0);
-
-            return normalizationConstant * Math.Exp(exp);
-        }
-
-        public bool IsAnomaly<T>(T unit, double plim)
+        public bool IsAnomaly(Unit unit, double plim)
         {
             if (CalculateProbability(unit) < plim)
             {

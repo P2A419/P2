@@ -1,11 +1,13 @@
-﻿using MathNet.Numerics.LinearAlgebra;
-using P2.AnomalyDetection;
-using P2.Units;
+﻿using P2.AnomalyDetection;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
-using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace P2
@@ -21,10 +23,10 @@ namespace P2
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            UnitTypeDropdown.SelectedIndex = 0;
+
         }
 
-        private void DataFindFileButton_Click(object sender, EventArgs e)
+        private void BrowseDataFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog fd = new OpenFileDialog();
 
@@ -36,7 +38,7 @@ namespace P2
             }
         }
 
-        private void GaussianTrainingFindFileButton_Click(object sender, EventArgs e)
+        private void GaussianFindTrainingFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog fd = new OpenFileDialog();
 
@@ -48,80 +50,84 @@ namespace P2
             }
         }
 
-        private void GaussianTrainButton_Click(object sender, EventArgs e)
+        private void GaussianTrain_Click(object sender, EventArgs e)
         {
-            Pig.Increment = 0;
-            List<Pig> pigs = Algorithms.FileToList<Pig>(GaussianTrainingFileTextBox.Text);
-            List<Pig> sPigs = Algorithms.Standardize(ref pigs);
-            
-            gaussian.Train(ref sPigs);
-
-            double plim = gaussian.CalculatePlim(ref sPigs);
-
-            DialogResult result = MessageBox.Show("Den anbefalede sandsynlighedsgrænse er:\n" + plim + "\nVil du anvende den?", "Anbefalede sandsynlighedsgrænse", MessageBoxButtons.YesNo);
-
-            if (result == DialogResult.Yes)
+            try
             {
-                GaussianPlimNumericUpDown.Value = (decimal)plim;
-            }
-        }
+                UnitCollection units = new UnitCollection();
 
-        private void GaussianStartButton_Click(object sender, EventArgs e)
-        {
-            Pig.Increment = 0;
-            List<Pig> pigs = Algorithms.FileToList<Pig>(DataFileTextBox.Text);
-            List<Pig> sPigs = Algorithms.Standardize(ref pigs);
+                units.FromFile(GaussianTrainingFileTextBox.Text);
 
-            int count = 0;
+                UnitCollection standardized = new UnitCollection();
 
-            AnomalyDetectedListView.Items.Clear();
+                standardized = gaussian.Standardize(units);
 
-            for(int i = 0; i < sPigs.Count(); i++) {
-                if (gaussian.IsAnomaly(sPigs[i], (double)GaussianPlimNumericUpDown.Value))
+                gaussian.Train(standardized);
+
+                double plim = gaussian.CalculateProbabilityLimit(standardized);
+
+                DialogResult result = MessageBox.Show("The recommended probability limit is:\n\n" + plim + "\n\nWould you like to apply it?", "Recommended Probability Limit", MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.Yes)
                 {
-                    ListViewItem listviewItem = new ListViewItem();
-                    listviewItem.Text = pigs[i].ID.ToString();
-                    listviewItem.SubItems.Add(pigs[i].Distance.ToString());
-                    listviewItem.SubItems.Add(pigs[i].Angle.ToString());
-                    AnomalyDetectedListView.Items.Add(listviewItem);
-                    count++;
+                    GaussianPlimNumericUpDown.Value = (decimal)plim;
                 }
             }
-
-            AnomalitiesDetected.Text = "Antal: " + count.ToString();
-        }
-
-        private void UnitTypeDropdown_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            switch (UnitTypeDropdown.SelectedIndex)
+            catch (Exception exception)
             {
-                case 0:
-                    AddColumnsToListView();
-                    break;
-
-                default:
-                    AnomalyDetectedListView.Columns.Clear();
-                    break;
+                MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        void AddColumnsToListView()
+        private void StartDetectionButton_Click(object sender, EventArgs e)
         {
-            AnomalyDetectedListView.Columns.Clear();
-
-            ColumnHeader columnID = new ColumnHeader();
-            columnID.Text = "ID";
-            columnID.Width = 50;
-            AnomalyDetectedListView.Columns.Add(columnID);
-
-            PropertyInfo[] properties = typeof(Pig).GetProperties();
-
-            foreach (var prop in properties)
+            try
             {
-                ColumnHeader header = new ColumnHeader();
-                header.Text = prop.Name;
-                header.Width = (AnomalyDetectedListView.Width - 71) / properties.Count();
-                AnomalyDetectedListView.Columns.Add(header);
+                AnomaliesDetectedListView.Columns.Clear();
+
+                UnitCollection units = new UnitCollection();
+                units.FromFile(DataFileTextBox.Text);
+                UnitCollection standardized = new UnitCollection();
+                standardized = gaussian.Standardize(units);
+
+                ColumnHeader hID = new ColumnHeader();
+                hID.Text = "ID";
+                hID.Width = 50;
+                AnomaliesDetectedListView.Columns.Add(hID);
+
+                for (int i = 0; i < units.Headers.Count(); i++)
+                {
+                    ColumnHeader h = new ColumnHeader();
+                    h.Text = char.ToUpper(units.Headers[i][0]) + units.Headers[i].Substring(1);
+                    h.Width = 120;
+                    AnomaliesDetectedListView.Columns.Add(h);
+                }
+
+                int count = 0;
+
+                for (int i = 0; i < standardized.List.Count(); i++)
+                {
+                    if (gaussian.IsAnomaly(standardized.List[i], (double)GaussianPlimNumericUpDown.Value))
+                    {
+                        ListViewItem lvi = new ListViewItem();
+
+                        lvi.Text = units.List[i].ID.ToString();
+
+                        foreach (double value in units.List[i].Values)
+                        {
+                            lvi.SubItems.Add(value.ToString());
+                        }
+
+                        AnomaliesDetectedListView.Items.Add(lvi);
+                        count++;
+                    }
+                }
+
+                AnomaliesDetectedCount.Text = "Count: " + count.ToString();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
